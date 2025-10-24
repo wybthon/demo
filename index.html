@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wybthon Demo</title>
+  <meta name="description" content="A fast, client-side Python SPA demo built with Wybthon on Pyodide. Showcasing routing, forms, data fetching, errors, lazy/suspense, theming, and transitions.">
+
+  <!-- Social / Open Graph -->
+  <meta property="og:title" content="Wybthon Demo">
+  <meta property="og:description" content="Client-side Python SPA running in the browser with Pyodide.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://demo.wybthon.com/public/og-image.jpg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Wybthon demo: surfing snake illustration">
+  <meta property="og:url" content="https://demo.wybthon.com/">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://demo.wybthon.com/public/og-image.jpg">
+
+  <!-- Icons -->
+  <link rel="icon" type="image/png" href="./public/favicon.png">
+  <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
+
+  <!-- Performance hints for Pyodide CDN -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <!-- Optionally modulepreload pyodide.mjs; SRI can be added when known -->
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.mjs" crossorigin>
+
+  <style>
+    body { margin: 0; font: 14px/1.4 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color: #111; }
+    .topbar { display: flex; gap: 12px; align-items: center; padding: 10px 14px; background: #0f172a; color: #fff; position: sticky; top: 0; z-index: 10; }
+    .topbar a { color: #c7d2fe; text-decoration: none; }
+    .topbar a:hover { text-decoration: underline; }
+    .spacer { flex: 1; }
+  </style>
+
+  <script type="module">
+    // Cache-bust the bootstrap during development to avoid stale module caching
+    const v = Date.now();
+    function guessBase() {
+      const host = location.hostname;
+      if (host === 'demo.wybthon.com') return '/';
+      if (host.endsWith('github.io')) {
+        const first = location.pathname.split('/').filter(Boolean)[0] || '';
+        return first ? `/${first}` : '/';
+      }
+      return '/';
+    }
+    const BASE = location.protocol === 'file:' ? '.' : guessBase();
+    window.DEMO_BASE_PATH = BASE;
+    import(`./bootstrap.js?v=${v}`);
+  </script>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Wybthon Demo</strong>
+    <span class="spacer"></span>
+    <a href="https://wybthon.github.io/wybthon/" target="_blank" rel="noopener noreferrer">Docs</a>
+    <a href="https://github.com/wybthon/wybthon" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://stackblitz.com/fork/github/wybthon/demo" target="_blank" rel="noopener noreferrer">Open in StackBlitz</a>
+  </div>
+  <noscript>This site requires JavaScript to run Wybthon via Pyodide.</noscript>
+</body>
+</html>

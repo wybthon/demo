@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wybthon Demo</title>
+  <meta name="description" content="A fast, client-side Python SPA demo built with Wybthon on Pyodide.">
+  <link rel="icon" type="image/png" href="./public/favicon.png">
+  <link rel="icon" type="image/x-icon" href="./public/favicon.ico">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="modulepreload" href="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.mjs" crossorigin>
+  <script type="module">
+    const v = Date.now();
+    function guessBase() {
+      const host = location.hostname;
+      if (host === 'demo.wybthon.com') return '/';
+      if (host.endsWith('github.io')) {
+        const first = location.pathname.split('/').filter(Boolean)[0] || '';
+        return first ? `/${first}` : '/';
+      }
+      return '/';
+    }
+    const BASE = location.protocol === 'file:' ? '.' : guessBase();
+    window.DEMO_BASE_PATH = BASE;
+    import(`./bootstrap.js?v=${v}`);
+  </script>
+</head>
+<body>
+  <noscript>This site requires JavaScript to run Wybthon via Pyodide.</noscript>
+</body>
+</html>
